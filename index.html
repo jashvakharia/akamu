@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Java File Execution</title>
+  <title>Execute Java on Website</title>
 </head>
 <body>
-    <h1>Java File Execution</h1>
-    <input type="file" id="javaFile" />
-    <button onclick="executeJava()">Execute Java</button>
-    <pre id="output"></pre>
-    
-    <script src="script.js"></script>
+  <textarea id="javaCode" rows="10" cols="50" placeholder="Enter your Java code here"></textarea>
+  <br>
+  <button onclick="executeJava()">Execute</button>
+  <div id="output"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
+
