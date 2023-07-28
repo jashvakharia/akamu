@@ -1,19 +1,26 @@
 function executeJava() {
-    const fileInput = document.getElementById('javaFile');
-    const file = fileInput.files[0];
+  // Get the Java code from the text area
+  var javaCode = document.getElementById("javaCode").value;
 
-    const fileReader = new FileReader();
-    fileReader.onload = function () {
-        const javaCode = fileReader.result;
-        const output = executeJavaCode(javaCode);
-        document.getElementById('output').innerText = output;
-    };
-    fileReader.readAsText(file);
-}
+  // Create a form data object to send the code to the server
+  var formData = new FormData();
+  formData.append("javaCode", javaCode);
 
-function executeJavaCode(javaCode) {
-    // Your client-side logic to execute the Java code here
-    // This could involve using a library like "Java Runtime for JavaScript" (https://github.com/darkmage530/JavaRuntimeForJavaScript)
-    // Note that executing Java code in the browser has many limitations and may not be suitable for complex programs.
-    // Also, keep in mind the security risks involved in running untrusted code.
+  // Send a POST request to the server to execute the code
+  fetch("execute.php", {
+      method: "POST",
+      body: formData
+    })
+    .then(function (response) {
+      // Convert the response to text format
+      return response.text();
+    })
+    .then(function (output) {
+      // Display the output on the webpage
+      document.getElementById("output").innerHTML = output;
+    })
+    .catch(function (error) {
+      // Handle any error that occurs
+      console.log(error);
+    });
 }
