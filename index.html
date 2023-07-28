@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Execute Java on Website</title>
+    <title>Execute Java Program</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#executeBtn').click(function() {
+                $.ajax({
+                    type: 'POST',
+                    url: 'execute.php', // Path to your server-side script
+                    success: function(data) {
+                        console.log('Java program executed successfully');
+                        // Handle the response from the server
+                        alert(data);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error executing Java program:', error);
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
-  <button onclick="executeJava()">Execute</button>
-  <div id="output"></div>
-
-  <script src="script.js"></script>
+    <h1>Execute Java Program</h1>
+    <button id="executeBtn">Execute</button>
 </body>
 </html>
